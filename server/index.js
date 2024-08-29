@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 const port = 5000;
 const contactroutes = require("./routes/contactroutes");
-app.use(cors());
+app.use(cors({'https://contactformapplication-78.onrender.com/'}));
 app.use(express.json());
 app.use("/api/v1", contactroutes);
 const startServer = async () => {
