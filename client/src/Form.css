@@ -21,7 +21,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* justify-content: center; */
 }
 .image img {
   height: 300px;
