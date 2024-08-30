@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Form.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,6 +12,7 @@ function Form() {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -28,6 +29,7 @@ function Form() {
       console.log(err);
     } finally {
       setIsLoading(false);
+      setHasSubmitted(true);
     }
   };
   const handleSubmit = (e) => {
@@ -59,6 +61,16 @@ function Form() {
     sendData();
     setFormData(initialFormData);
   };
+  useEffect(() => {
+    if (isLoading) {
+      toast.dismiss();
+      toast.success("Sending....");
+    } else if (hasSubmitted && !isLoading) {
+      toast.dismiss();
+      toast.success("Successfully sent");
+    }
+  }, [isLoading, hasSubmitted]);
+
   return (
     <div className="main">
       <div className="image">
@@ -103,7 +115,7 @@ function Form() {
           value={formData.message}
         ></textarea>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Sending....." : "Send"}
+          send
         </button>
       </form>
       <ToastContainer position="top-center" pauseOnFocusLoss pauseOnHover />
