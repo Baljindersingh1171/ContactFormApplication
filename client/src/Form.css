@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 73vh;
+  min-height: 100vh;
 }
 
 .main {
@@ -31,6 +31,8 @@ form input {
   outline: none;
   border-radius: 5px;
   font-size: 15px;
+  width: 100%;
+  max-width: 400px;
 }
 
 textarea {
@@ -48,4 +50,35 @@ button {
   color: white;
 
   border: none;
+}
+@media (max-width: 759px) {
+  .main {
+    flex-direction: column;
+  }
+}
+@media (max-width: 719px) {
+  .main {
+    gap: 15vh;
+  }
+  .image img {
+    max-width: 500px;
+  }
+}
+@media (max-width: 919px) {
+  .main {
+    gap: 5vh;
+  }
+  form {
+    max-width: 370px;
+  }
+  .image img {
+    max-width: 370px;
+  }
+
+  /* textarea {
+    max-width: 300px;
+  }
+  button {
+    max-width: 300px;
+  } */
 }

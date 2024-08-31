@@ -57,6 +57,12 @@ function Form() {
       toast.error("Incorrect PhoneNumber");
       return;
     }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      toast.dismiss();
+      toast.error("Invalid email address");
+      return;
+    }
 
     sendData();
     setFormData(initialFormData);
@@ -76,48 +82,50 @@ function Form() {
       <div className="image">
         <img src="https://media.istockphoto.com/id/1323765737/photo/close-up-of-a-businessman-using-a-laptop-computer-and-a-mobile-phone.webp?b=1&s=612x612&w=0&k=20&c=dMQ9OWLgVWXir9KBH-vHDkp68s2dodEiEqEVjTf6rF4=" />
       </div>
-      <form onSubmit={handleSubmit}>
-        <h2>GET IN TOUCH</h2>
-        <p style={{ display: "flex", gap: "20px" }}>
-          <p>📞+91-7814214323</p> <p>📩itsbaljindersingh17@gmail.com</p>
-        </p>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <h2>GET IN TOUCH</h2>
+          <p style={{ display: "flex", gap: "20px" }}>
+            <p>📞+91-7814214323</p> <p>📩itsbaljindersingh17@gmail.com</p>
+          </p>
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          name="fullname"
-          onChange={handleChange}
-          value={formData.fullname}
-        ></input>
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          onChange={handleChange}
-          value={formData.email}
-        ></input>
-        <input
-          type="tel"
-          placeholder="ContactNo."
-          name="phonenumber"
-          onChange={handleChange}
-          pattern="[0-9]*"
-          inputMode="numeric"
-          value={formData.phonenumber}
-        ></input>
-        <textarea
-          id="message"
-          placeholder="Your Message"
-          rows="4"
-          cols="50"
-          name="message"
-          onChange={handleChange}
-          value={formData.message}
-        ></textarea>
-        <button type="submit" disabled={isLoading}>
-          send
-        </button>
-      </form>
+          <input
+            type="text"
+            placeholder="Full Name"
+            name="fullname"
+            onChange={handleChange}
+            value={formData.fullname}
+          ></input>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            onChange={handleChange}
+            value={formData.email}
+          ></input>
+          <input
+            type="tel"
+            placeholder="ContactNo."
+            name="phonenumber"
+            onChange={handleChange}
+            pattern="[0-9]*"
+            inputMode="numeric"
+            value={formData.phonenumber}
+          ></input>
+          <textarea
+            id="message"
+            placeholder="Your Message"
+            rows="5"
+            cols="40"
+            name="message"
+            onChange={handleChange}
+            value={formData.message}
+          ></textarea>
+          <button type="submit" disabled={isLoading}>
+            send
+          </button>
+        </form>
+      </div>
       <ToastContainer position="top-center" pauseOnFocusLoss pauseOnHover />
     </div>
   );
