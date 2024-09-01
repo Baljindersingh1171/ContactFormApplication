@@ -13,6 +13,7 @@ function Form() {
   const [formData, setFormData] = useState(initialFormData);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  let toastId = null;
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(value);
@@ -68,8 +69,6 @@ function Form() {
     setFormData(initialFormData);
   };
   useEffect(() => {
-    let toastId;
-
     if (isLoading) {
       toastId = toast.loading("Sending...");
     } else if (hasSubmitted && !isLoading) {
