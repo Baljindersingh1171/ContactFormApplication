@@ -34,7 +34,6 @@ const form = async (req, res) => {
       subject: ` Contact Form Submission from ${fullname}`,
 
       text: `Name:${fullname}\nEmail:${email}\nMobile:${phonenumber}\n\nMessage:\n${message}`,
-      replyTo: email,
     };
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {

@@ -68,23 +68,13 @@ function Form() {
     setFormData(initialFormData);
   };
   useEffect(() => {
-    let toastId;
-
     if (isLoading) {
-      toastId = toast.loading("Sending...");
+      toast.dismiss();
+      toast.success("Sending....");
     } else if (hasSubmitted && !isLoading) {
-      toast.update(toastId, {
-        render: "Successfully sent",
-        type: "success",
-        isLoading: false,
-        autoClose: 3000,
-      });
+      toast.dismiss();
+      toast.success("Successfully sent");
     }
-    return () => {
-      if (toastId) {
-        toast.dismiss(toastId);
-      }
-    };
   }, [isLoading, hasSubmitted]);
 
   return (
