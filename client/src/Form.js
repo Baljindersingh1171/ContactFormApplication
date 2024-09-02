@@ -71,6 +71,7 @@ function Form() {
       toast.dismiss();
       toast.loading("Sending...");
     } else if (!isLoading && hasSubmitted) {
+      toast.dismiss();
       toast.success("Successfully sent");
     }
   }, [isLoading, hasSubmitted]);
