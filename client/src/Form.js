@@ -50,14 +50,12 @@ function Form() {
       toast.error("Name should be at most 20 characters");
       return;
     }
-    if (
-      formData.phonenumber.length !== 10 ||
-      !/^\d{10}$/.test(formData.phonenumber)
-    ) {
+    if (!/^\+?[1-9]\d{1,14}(\s?\d{1,13})?$/.test(formData.phonenumber)) {
       toast.dismiss();
       toast.error("Incorrect PhoneNumber");
       return;
     }
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(formData.email)) {
       toast.dismiss();
@@ -71,14 +69,9 @@ function Form() {
   useEffect(() => {
     if (isLoading) {
       toast.dismiss();
-      toast.loading("Sending...", { id: "loading-toast" });
+      toast.loading("Sending...");
     } else if (!isLoading && hasSubmitted) {
-      toast.update("loading-toast", {
-        render: "Send successfully",
-        type: "success",
-        isLoading: false,
-        autoClose: 3000,
-      });
+      toast.success("Successfully sent");
     }
   }, [isLoading, hasSubmitted]);
 
