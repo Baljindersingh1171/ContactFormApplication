@@ -13,6 +13,7 @@ function Form() {
   const [formData, setFormData] = useState(initialFormData);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const fullNameRegex = /^[A-Za-z]{5,20}([ '-][A-Za-z]{1,20})*$/;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,9 +46,9 @@ function Form() {
       toast.error("All fields are required");
       return;
     }
-    if (formData.fullname.length > 20) {
+    if (!fullNameRegex.test(formData.fullname)) {
       toast.dismiss();
-      toast.error("Name should be at most 20 characters");
+      toast.error("Incorrect FullName");
       return;
     }
     if (!/^\+?[1-9]\d{1,14}(\s?\d{1,13})?$/.test(formData.phonenumber)) {
